@@ -1,3 +1,12 @@
+---
+name: Package update
+about: Describe your packages update here
+title: Package update
+labels: package update
+assignees: Noticxs
+type: update
+---
+
 ## Pull Request Summary
 
 Please fill out the details below for this package submission.
