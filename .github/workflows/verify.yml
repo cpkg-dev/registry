@@ -1,0 +1,34 @@
+name: Verify Package Submission
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Extract Submission Details
+        id: extract
+        run: |
+          BODY="${{ github.event.pull_request.body }}"
+          URL=$(echo "$BODY" | grep -oP '(?<=\*\*Source URL:\*\* ).*')
+          EXPECTED_HASH=$(echo "$BODY" | grep -oP '(?<=\*\*Verification Hash \(SHA256\):\*\* ).*')
+          echo "url=$URL" >> $GITHUB_OUTPUT
+          echo "expected_hash=$EXPECTED_HASH" >> $GITHUB_OUTPUT
+
+      - name: Download and Verify Package
+        run: |
+          curl -sL "${{ steps.extract.outputs.url }}" -o package.tar.gz
+           ACTUAL_HASH=$(sha256sum package.tar.gz | awk '{print $1}')
+          EXPECTED="${{ steps.extract.outputs.expected_hash }}"
+          
+          if [ "$ACTUAL_HASH" != "$EXPECTED" ]; then
+            echo "Hash mismatch! Expected $EXPECTED but got $ACTUAL_HASH"
+            exit 1
+          fi
+          echo "Hash verification passed."
+
