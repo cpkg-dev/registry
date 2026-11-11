@@ -54,7 +54,9 @@ The issue should be structured similar to this (this is an imaginary package cal
 - [ ] I have disclosed my Ai usage and agree if incorrect discipline will be taken against me.
 ```
 
-### 3. Updating a package
+### 3. Updating a package [right here](https://github.com/cpkg-dev/registry/pulls)
+
+Make a pull request showing off your updated package, this will be verified by us if its working and should be merged into the main registry (this can take up to a week, 2 weeks if many submissions are pushed).
 
 ```markdown
 ### Package Details
