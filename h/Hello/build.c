@@ -10,10 +10,10 @@ int build() {
   cpkg.version = "0.1.0";
   cpkg.authors = (char *[]){"Noticxs", NULL};
 
-  cpkg.get_url =
-      "https://github.com/Noticxs/Hello/raw/main/packaging/hello.tar.gz";
+  cpkg.get_url = "https://raw.githubusercontent.com/Noticxs/Hello/main/"
+                 "packaging/hello.tar.gz";
   cpkg.sha256hash =
-      "e727c90de56d126e555859857e42839fd0c1155147b8abc642572dc8f277a3b3";
+      "888fffee73e0f7f20bcc43f52ad62faa30524c0d4cecc47565afd4f78f8be0f2";
   cpkg.install_source = binary;
 
   return 0;
