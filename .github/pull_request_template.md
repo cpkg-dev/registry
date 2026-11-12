@@ -10,7 +10,7 @@ Please fill out the details below for this package submission.
 
 ### Verification
 
-- **Source URL:**
+- **Source URL ("raw.githubusercontent.com"):**
 - **SHA256 Hash:**
 
 ### Changes

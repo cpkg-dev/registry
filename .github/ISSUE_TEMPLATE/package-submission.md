@@ -18,7 +18,7 @@ type: Feature
 
 ### Source & Verification
 
-- **Source URL:**
+- **Source URL ("raw.githubusercontent.com"):**
 - **Verification Hash (SHA256):**
 - **Install Source (Source/Binary):**
 
