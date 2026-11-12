@@ -25,6 +25,15 @@ Your package needs to be attached in the issue with the following:
 The issue should be structured similar to this (this is an imaginary package called "gloop" a wayland wallpaper manager):
 
 ```markdown
+---
+name: Package submission
+about: Describe your package submission in short for us
+title: Package submission
+labels: package submission
+assignees: Noticxs
+type: Feature
+---
+
 ## Package Submission
 
 ### Package Details
@@ -36,7 +45,7 @@ The issue should be structured similar to this (this is an imaginary package cal
 
 ### Source & Verification
 
-- **Source URL:**
+- **Source URL ("raw.githubusercontent.com"):**
 - **Verification Hash (SHA256):**
 - **Install Source (Source/Binary):**
 
@@ -59,13 +68,22 @@ The issue should be structured similar to this (this is an imaginary package cal
 Make a pull request showing off your updated package, this will be verified by us if its working and should be merged into the main registry (this can take up to a week, 2 weeks if many submissions are pushed).
 
 ```markdown
+## Pull Request Summary
+
+Please fill out the details below for this package submission.
+
 ### Package Details
 
-- **Package Name:** gloop
-- **Version:** v0.2.0
+- **Package Name:**
+- **Version:**
+- **Description:**
 
-### Source & Verification
+### Verification
 
-- **Source URL:** https://raw.githubusercontent.com/AmetrineFoundation/cpkg/main/binary/gloop.appimage
-- **Verification Hash (SHA256):** RANDOM_SHA256_HASH
+- **Source URL ("raw.githubusercontent.com"):**
+- **SHA256 Hash:**
+
+### Changes
+
+- Briefly describe what this submission adds or updates.
 ```
