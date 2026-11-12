@@ -15,20 +15,29 @@ jobs:
         id: extract
         run: |
           BODY="${{ github.event.pull_request.body }}"
-          URL=$(echo "$BODY" | grep -oP '(?<=\*\*Source URL:\*\* ).*')
-          EXPECTED_HASH=$(echo "$BODY" | grep -oP '(?<=\*\*Verification Hash \(SHA256\):\*\* ).*')
+
+          # Extract Source URL, trimming leading/trailing spaces or markdown bullet artifacts
+          URL=$(echo "$BODY" | grep -oP '(?<=\*\*Source URL:\*\* ).*' | tr -d '\r' | xargs)
+
+          # Match the exact label used in your PR template: "**Verification Hash:**"
+          EXPECTED_HASH=$(echo "$BODY" | grep -oP '(?<=\*\*Verification Hash:\*\* ).*' | tr -d '\r' | xargs)
+
           echo "url=$URL" >> $GITHUB_OUTPUT
           echo "expected_hash=$EXPECTED_HASH" >> $GITHUB_OUTPUT
 
       - name: Download and Verify Package
         run: |
+          echo "Downloading from: ${{ steps.extract.outputs.url }}"
           curl -sL "${{ steps.extract.outputs.url }}" -o package.tar.gz
-           ACTUAL_HASH=$(sha256sum package.tar.gz | awk '{print $1}')
+
+          ACTUAL_HASH=$(sha256sum package.tar.gz | awk '{print $1}')
           EXPECTED="${{ steps.extract.outputs.expected_hash }}"
-          
+
+          echo "Expected Hash: $EXPECTED"
+          echo "Actual Hash:   $ACTUAL_HASH"
+
           if [ "$ACTUAL_HASH" != "$EXPECTED" ]; then
-            echo "Hash mismatch! Expected $EXPECTED but got $ACTUAL_HASH"
+            echo "Hash mismatch!"
             exit 1
           fi
           echo "Hash verification passed."
-
